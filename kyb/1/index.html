@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
 
+<textarea name="input" rows="4" cols="52" form="kybForm">
+Enter the stuffs here.
+</textarea>
+<br>
+<textarea name="key" rows="1" cols="52" form="kybForm">
+Enter key here.
+</textarea>
+<br>
+
+<form id="kybForm" action="" method="POST">
+<input type="button" value="OTP-encrypt" name="otpen" onclick="otpenc()" />
+<input type="button" value="OTP-decrypt" name="otpde" onclick="otpdec()" />
+<input type="button" value="SHA-2 encrypt" name="shaen" onclick="shaenc()" />
+<input type="button" value="MD5-decrypt" name="mdde" onclick="mddec()" />
+</form>
+
+
+<script>
+form=document.getElementById("someForm");
+function askForSave() {
+        form.action="save_for_later.php";
+        form.action="http://box.sianware.com/echopost.php";
+        form.submit();
+}
+function askForSubmit() {
+        form.action="submit_for_approval.php";
+        form.submit();
+}
+ 
+</script>
+</body>
+</html>
