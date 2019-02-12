@@ -1,51 +1,71 @@
 <!DOCTYPE html>
 <html>
-<body>
+	<body>
+	<textarea id="input" name="input" rows="4" cols="52" type="text">Enter the stuffs here.</textarea><br>
+	
+	<textarea id="key" name="key" rows="1" cols="52" type="text">Enter key here.</textarea><br>
 
-<textarea id="input" name="input" rows="4" cols="52" type="text">
-Enter the stuffs here.
-</textarea>
-<br>
-<textarea id="key" name="key" rows="1" cols="52" type="text">
-Enter key here.
-</textarea>
-<br>
+	<input type="button" value="OTP-encrypt" name="otpen" onclick="otpenc()" />
+	<input type="button" value="OTP-decrypt" name="otpde" onclick="otpdec()" />
+	<input type="button" value="SHA-2 encrypt" name="shaen" onclick="shaenc()" />
+	<input type="button" value="MD5-decrypt" name="mdde" onclick="mddec()" /><br>
+	
+	<textarea id="result" name="result" rows="1" cols="52" type="text">Result will be put here.</textarea>
+	
+	<!--Imported things to do sha2-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha256.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-base64.min.js"></script>
+	
+	<script>
+	function otpenc() {
+		var input = document.getElementById("input").value;
+		var key = document.getElementById("key").value;
+		var output = "";
+		if (input.length > key.length) {  // if key isn't proper, output a message and quit script
+			document.getElementById("result").value = "Key has to be at least as long as the input!";
+			return
+		}
+		// iterate through input characters
+		for (var i = 0; i < input.length; i++) {
+			var charac = input.charAt(i).toUpperCase();  // get input character's ascii value (uppercase)
+			var curkey = key.charAt(i).toUpperCase();  // get key character's ascii value
+			charac = String.fromCharCode(65 + (charac.charCodeAt(0) - 65 + curkey.charCodeAt(0) - 65) % 26);  // get character that corresponds to combining of the 2 characters
+			output += charac;  // add it to output string
+		}
+		document.getElementById("result").value = output;  // put it into result's textfield
 
-<input type="button" value="OTP-encrypt" name="otpen" onclick="otpenc()" />
-<input type="button" value="OTP-decrypt" name="otpde" onclick="otpdec()" />
-<input type="button" value="SHA-2 encrypt" name="shaen" onclick="shaenc()" />
-<input type="button" value="MD5-decrypt" name="mdde" onclick="mddec()" />
- <br>
-<textarea id="result" name="result" rows="1" cols="52" type="text">
-Result will be here.
-</textarea>
-  
-<script>
-function otpenc() {
- var input =document.getElementById("input").value;
- var key = document.getElementById("key").value;
- var output = "";
- for (var i = 0; i < input.length; i++) {
-  var char = input.char(i);
-  if (char == char.toUpperCase()) {
-    char = String.fromCharCode(97 + (char.charCodeAt(0) - 97 + key.charCodeAt(i) - 97) % 26);
-  }
-  output += char;
- } 
-  document.getElementById("result").value = output;
-     document.getElementById("result").value = "adaw";
-
-}
-function otpdec() {
-        
-}
-function shaenc() {
-        
-}
-function mddec() {
-        
-}
- 
-</script>
-</body>
+	}
+	function otpdec() {
+		var input = document.getElementById("input").value;
+		var key = document.getElementById("key").value;
+		var output = "";
+		if (input.length > key.length) {  // if key isn't proper, output a message and quit script
+			document.getElementById("result").value = "Key has to be at least as long as the input!";
+			return
+		}
+		// iterate through input characters
+		for (var i = 0; i < input.length; i++) {
+			var charac = input.charAt(i).toUpperCase();  // get input character's ascii value (uppercase)
+			var curkey = key.charAt(i).toUpperCase();  // get key character's ascii value
+			charac = String.fromCharCode(65 + (26 + charac.charCodeAt(0) - 65 - curkey.charCodeAt(0) + 65) % 26);  // get character that corresponds to combining of the 2 characters
+			output += charac;  // add it to output string
+		}
+		document.getElementById("result").value = output;  // put it into result's textfield
+	}
+	function shaenc() {
+		var input = document.getElementById("input").value;  // get input
+		var hash = CryptoJS.HmacSHA256(input, "");  // use that super awesome third party stuff to get the hash
+		var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);  // use other super awesome third party stuff to make the hash to base64
+		document.getElementById("result").value = hashInBase64;  // output it.
+	}
+	function mddec() {
+		var input = document.getElementById("input").value;  // get input
+		document.getElementById("result").value = "Please paste in the result from the newly opened tab.";  // ask user to output it.
+		window.open('http://hashtoolkit.com/reverse-hash/?hash=' + input, '_blank');  // open the tab where user can get the answer
+	}
+	
+	 
+	</script>
+	</body>
 </html>
