@@ -6,7 +6,7 @@
 Enter the stuffs here.
 </textarea>
 <br>
-<textarea id="key" name="key" rows="1" cols="52" form="kybForm" type="text">
+<textarea id="key" name="key" rows="1" cols="52" form="kybForm" type="text" align="center">
 Enter key here.
 </textarea>
 <br>
@@ -25,6 +25,15 @@ Result will be here.
 <script>
 form=document.getElementById("kybForm");
 function otpenc() {
+ var input = form.namedItem("input").value;
+ var key = form.namedItem("input").value;
+ var output = "";
+ for (var i = 0; i < input.length; i++) {
+  var char = input.char(i);
+  if (char == char.toUpperCase()) {
+    char = 97 + String.fromCharCode((char.charCodeAt(0) - 97 + key.charCodeAt(i) - 97) % 26);
+  output += input.char(i);
+ } 
         document.getElementById("result").value = "abc";
 }
 function otpdec() {
