@@ -21,7 +21,6 @@ Result will be here.
 </textarea>
   
 <script>
-form=document.getElementById("kybForm");
 function otpenc() {
  var input =document.getElementById("input").value;
  var key = document.getElementById("key").value;
@@ -34,6 +33,8 @@ function otpenc() {
   output += char;
  } 
   document.getElementById("result").value = output;
+     document.getElementById("result").value = "adaw";
+
 }
 function otpdec() {
         
