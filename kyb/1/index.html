@@ -2,11 +2,11 @@
 <html>
 <body>
 
-<textarea name="input" rows="4" cols="52" form="kybForm">
+<textarea id="input" name="input" rows="4" cols="52" form="kybForm" type="text">
 Enter the stuffs here.
 </textarea>
 <br>
-<textarea name="key" rows="1" cols="52" form="kybForm">
+<textarea id="key" name="key" rows="1" cols="52" form="kybForm" type="text">
 Enter key here.
 </textarea>
 <br>
@@ -18,17 +18,23 @@ Enter key here.
 <input type="button" value="MD5-decrypt" name="mdde" onclick="mddec()" />
 </form>
 
-
+<textarea id="result" name="result" rows="1" cols="52" form="kybForm" type="text">
+Result will be here.
+</textarea>
+  
 <script>
-form=document.getElementById("someForm");
-function askForSave() {
-        form.action="save_for_later.php";
-        form.action="http://box.sianware.com/echopost.php";
-        form.submit();
+form=document.getElementById("kybForm");
+function otpenc() {
+        document.getElementById("result").value = "abc";
 }
-function askForSubmit() {
-        form.action="submit_for_approval.php";
-        form.submit();
+function otpdec() {
+        
+}
+function shaenc() {
+        
+}
+function mddec() {
+        
 }
  
 </script>
