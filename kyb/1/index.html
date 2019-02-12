@@ -30,9 +30,10 @@ function otpenc() {
   var char = input.char(i);
   if (char == char.toUpperCase()) {
     char = String.fromCharCode(97 + (char.charCodeAt(0) - 97 + key.charCodeAt(i) - 97) % 26);
-  output += input.char(i);
+  }
+  output += char;
  } 
-        document.getElementById("result").value = output;
+  document.getElementById("result").value = output;
 }
 function otpdec() {
         
