@@ -23,6 +23,7 @@ body {
 </div>
 
 <script>
+// OTP encryption function
 function otpenc() {
 	var input = document.getElementById("input").value;
 	var key = document.getElementById("key").value;
@@ -41,6 +42,7 @@ function otpenc() {
 	document.getElementById("result").value = output;  // put it into result's textfield
 
 }
+// OTP decryption function
 function otpdec() {
 
 	var input = document.getElementById("input").value;
@@ -59,10 +61,12 @@ function otpdec() {
 	}
 	document.getElementById("result").value = output;  // put it into result's textfield
 }
+// SHA encryption function
 function shaenc() {
 	var input = document.getElementById("input").value;
 	document.getElementById("result").value = hexToBase64(Sha256.hash(input));
 }
+// MD5 decryption function
 function mddec() {
 	var input = document.getElementById("input").value;  // get input
 	document.getElementById("result").value = "Please paste result from new tab here.";  // ask user to output it.
