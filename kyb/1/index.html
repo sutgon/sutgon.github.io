@@ -2,36 +2,34 @@
 <html>
 <body>
 
-<textarea id="input" name="input" rows="4" cols="52" form="kybForm" type="text">
+<textarea id="input" name="input" rows="4" cols="52" type="text">
 Enter the stuffs here.
 </textarea>
 <br>
-<textarea id="key" name="key" rows="1" cols="52" form="kybForm" type="text" align="center">
+<textarea id="key" name="key" rows="1" cols="52" type="text">
 Enter key here.
 </textarea>
 <br>
 
-<form id="kybForm" action="" method="POST">
 <input type="button" value="OTP-encrypt" name="otpen" onclick="otpenc()" />
 <input type="button" value="OTP-decrypt" name="otpde" onclick="otpdec()" />
 <input type="button" value="SHA-2 encrypt" name="shaen" onclick="shaenc()" />
 <input type="button" value="MD5-decrypt" name="mdde" onclick="mddec()" />
-</form>
-
-<textarea id="result" name="result" rows="1" cols="52" form="kybForm" type="text">
+ <br>
+<textarea id="result" name="result" rows="1" cols="52" type="text">
 Result will be here.
 </textarea>
   
 <script>
 form=document.getElementById("kybForm");
 function otpenc() {
- var input = form.namedItem("input").value;
- var key = form.namedItem("input").value;
+ var input =document.getElementById("input").value;
+ var key = document.getElementById("key").value;
  var output = "";
  for (var i = 0; i < input.length; i++) {
   var char = input.char(i);
   if (char == char.toUpperCase()) {
-    char = 97 + String.fromCharCode((char.charCodeAt(0) - 97 + key.charCodeAt(i) - 97) % 26);
+    char = String.fromCharCode(97 + (char.charCodeAt(0) - 97 + key.charCodeAt(i) - 97) % 26);
   output += input.char(i);
  } 
         document.getElementById("result").value = output;
